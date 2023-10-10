@@ -43,15 +43,23 @@ def check_edge(x, y, sizez):
     xlen, ylen = sizez
     return not (x > 0 and x < xlen - 1 and y > 0 and y < ylen - 1)
 
+def check_edge_2(x, y, sizez):
+    xlen, ylen = sizez
+    if(x <= 0 or x >= xlen - 1 or y <= 0 or y >= ylen - 1):
+        return True
+    else:
+        return False
+
 def surrounding_tiles(grid_):
-    size_ = grid_.shape
+    size_i = grid_.shape
 
     for coords, current_pos in  np.ndenumerate(grid_):
         # Splits the coordinate tuple for the current value's location into the x and y coordinates
         x_coord, y_coord = coords
         
-        if (True):
-
+        if (check_edge_2(x_coord, y_coord, size_i)):
+            print(current_pos, " is an edge")
+        else:
             # Gets the coordinates and value of the cell in the specified cardinal direction
             # North
             N_xcoord, N_ycoord = (x_coord - 1, y_coord)
@@ -77,8 +85,8 @@ def surrounding_tiles(grid_):
             # South-East
             SE_xcoord, SE_ycoord = (x_coord + 1, y_coord + 1)
             SE_val = grid[SE_xcoord][SE_ycoord]
-
-            print(NW_val, N_val, NE_val, W_val, "X", E_val, SW_val, S_val, SE_val)
+            print("\nX =", current_pos, "")
+            print(NW_val, N_val, NE_val, "\n", W_val, " X ", E_val, "\n", SW_val, S_val, SE_val)
 
 
 
@@ -99,5 +107,7 @@ for x in range(1, 26):
 
     print("\nlooking at:          ", x)
     print("coordinates are:     ", argx, argy)
-    print("is it an edge?       ", check_edge(argx, argy, sdot))
+    print("is it an edge?       ", check_edge_2(argx, argy, sdot))
     print("Expected:            ", x in expected)
+
+surrounding_tiles(grid)
