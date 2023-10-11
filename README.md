@@ -1,4 +1,4 @@
-# LivingGame
+# living_game
 
 My implementation of Conway's Game of Life. 
 
