@@ -3,7 +3,6 @@ import os
 from time import sleep
 import keyboard
 import argparse
-import random
 
 step_speed = .17
 
@@ -187,20 +186,6 @@ def lines():
     grid[mid - 4][mid + 3] = 1
     grid[mid - 4][mid - 3] = 1
 
-# Will fix this later
-def random_grid():
-    global grid
-    global size_
-    global shape
-    global states
-    for row in grid:
-        for val in row:
-            r = random.random()
-            if r < .5:
-                val = 1
-            else:
-                val = 0
-
 def replace_random_grid(shape_):
     return np.random.choice(states, size = shape_,p=probs)
 
@@ -227,6 +212,9 @@ def main():
         func()
     else:
         print(f'Function "{args.i}" not found.')
+        sleep(1)
+        print("Starting with blank grid")
+        sleep(2)
     # Start animation
     visual_animation_terminal(grid)
 
